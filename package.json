@@ -1,0 +1,30 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bun --bun nuxt build",
+    "dev:nuxt": "bun --bun nuxt dev",
+    "dev:elysia": "bun --bun --watch index.ts",
+    "dev": "bun run kill && concurrently \"bun run dev:nuxt\" \"bun run dev:elysia\"",
+    "generate": "nuxt generate",
+    "preview": "bun --bun nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint --fix .",
+    "kill": "lsof -t -i:5566 | xargs kill && lsof -t -i:3000 | xargs kill"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^1.1.1",
+    "@nuxt/devtools": "latest",
+    "@nuxt/image": "latest",
+    "elysia": "^0.7.24",
+    "eslint": "^8.53.0",
+    "nuxt": "^3.8.1",
+    "vue": "^3.3.8",
+    "vue-router": "^4.2.5",
+    "concurrently": "^8.2.2",
+    "bun-types": "^1.0.11"
+  },
+  "dependencies": {
+  }
+}
