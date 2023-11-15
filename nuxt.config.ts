@@ -1,12 +1,19 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
-  nitro: {
-    preset: './runtime/preset',
-    experimental:{
-      'asyncContext': true,
-      'openAPI': true
-    }
-  },
- vite:{server:{origin:'localhost:3000' }}
+ devtools: { enabled: true },
+
+ nitro: {
+   preset: './runtime/preset',
+   experimental:{
+     'asyncContext': true,
+     'openAPI': true
+   }
+ },
+
+ vite:{server:{origin:'localhost:3000' }},
+ modules: ['@nuxt/ui'],
+ ui:{
+  global: true,
+  // icons: ["mdi", 'simple-icons']
+ }
 })

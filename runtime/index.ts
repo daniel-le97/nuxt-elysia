@@ -31,22 +31,28 @@ export default new Elysia().all('*', async (context) => {
   if (!origin) {
     throw new Error(`Can't find the origin from "${nuxtConfigPath}"`)
   }
-console.log(context.request);
+// console.log({request: context.request});
 
   // forward the request
   const url = new URL(context.request.url)
   url.host = origin
 
-  const req = new Request(url.toString(), context.request)
+  // @ts-ignore resending
+  const req = new Request(url.toString(), {...context.request, mode: 'no-cors'})
   req.headers.set('host', url.host)
   req.headers.set('origin', url.origin)
 
-  console.log({url});
+
+  // console.log({url, req});
   
 
   const res = await fetch(req)
+  console.log({res, req});
+  
 
   if (!res.headers.get('content-type')?.includes('text/html')) {
+    console.log('no text/html');
+    
     return res
   }
 
@@ -60,3 +66,6 @@ console.log(context.request);
 
   return new Response(html, res)
 })
+
+
+
