@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     hello world!
                   <button type="button" @click="">send message</button>
                    <UPopover>
@@ -11,7 +11,7 @@
           </div>
         </template>
     </UPopover>
-            </div>
+            </main>
 
 </template>
 

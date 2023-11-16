@@ -93,8 +93,8 @@ onBeforeUnmount(() => {
       <span class="nav-indicator"></span>
     </div>
     <div class="flex items-center justify-center space-x-4">
-      <ColorMode />
       <ProfileDropDown />
+      <ColorMode />
  
    <a href="">
       <UIcon  name="i-heroicons-finger-print-20-solid" />
