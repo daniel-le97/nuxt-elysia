@@ -23,7 +23,7 @@ const socials = [
 <template>
   <footer class="bg-zinc-900 text-white">
       <div class="w-full pt-10 flex items-center justify-center bg-zinc-900">
-        <div class="md:w-2/3 w-full px-4 text-white flex flex-col">
+        <div class="w-3/4 px-4 text-white flex flex-col">
           <div class="md:flex">
             <h1 class="text-6xl font-bold w-full md:w-1/2">
               Thank you for checking out our app. Get in touch with us.

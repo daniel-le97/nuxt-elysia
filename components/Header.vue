@@ -88,7 +88,7 @@ onBeforeUnmount(() => {
     <div class=" hidden lg:inline-flex relative  overflow-hidden w-fit ">
       <NuxtLink href="/" class="nav-item is-active" active-color="orange">Home</NuxtLink>
       <NuxtLink href="/about" class="nav-item " active-color="orange">About</NuxtLink>
-      <NuxtLink href="/contact" class="nav-item " active-color="orange">Contact</NuxtLink>
+      <NuxtLink href="/applications/id" class="nav-item " active-color="orange">ForDaniel</NuxtLink>
       <NuxtLink href="/login" class="nav-item " active-color="orange">Login</NuxtLink>
       <span class="nav-indicator"></span>
     </div>

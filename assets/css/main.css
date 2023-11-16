@@ -3,7 +3,5 @@
 @tailwind utilities;
 
 main{
-  min-height: 100vh;
-  padding-top: 4.5rem;
-  padding: 2rem;
+ @apply min-h-screen py-24 px-16 dark:bg-zinc-900
 }
