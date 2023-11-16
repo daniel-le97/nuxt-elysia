@@ -79,10 +79,10 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="nav"
-    class="  bg-white fixed top-0 w-full transition-transform duration-300 ease-in-out px-3 flex items-center  justify-around text-gray-900  dark:text-white   shadow-md dark:bg-gray-900 z-50 "
+    class="  bg-white bg-opacity-40 backdrop-blur-sm fixed top-0 w-full transition-transform duration-300 ease-in-out px-3 flex items-center  justify-around text-gray-900  dark:text-white   shadow-md dark:bg-gray-900 z-50 "
     :style="{ transform: navTransform }">
-    <div class="">
-      <UIcon name="i-heroicons-banknotes-solid" />
+    <div class=" w-fit">
+      <Icon name="skill-icons:nuxtjs-dark"  class="text-5xl"/>
   
     </div>
     <div class=" hidden lg:inline-flex relative  overflow-hidden w-fit ">
@@ -97,9 +97,10 @@ onBeforeUnmount(() => {
       <ProfileDropDown />
      
  
-   <a href="">
-      <UIcon  name="i-heroicons-finger-print-20-solid" />
-   </a>
+    <a href="https://github.com/daniel-le97/nuxt-elysia">
+                    
+                        <Icon name="mdi:github" class="text-2xl" />
+                      </a>
  
     </div>
   </div>

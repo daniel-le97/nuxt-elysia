@@ -11,7 +11,7 @@ css:["~/assets/css/main.css"],
  },
 
  vite:{server:{origin:'localhost:3000' }},
- modules: ['@nuxt/ui'],
+ modules: ['@nuxt/ui','nuxt-icon'],
  ui:{
   global: true,
   // icons: ["mdi", 'simple-icons']

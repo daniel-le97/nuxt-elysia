@@ -106,7 +106,7 @@ onMounted(()=>{
     width: 100%;
     inset: 0px;
     border-radius: inherit;
-    background: radial-gradient(800px circle at var(--x-px) var(--y-px), rgba(238, 116, 116, 0.3), transparent 40%);
+    background: radial-gradient(800px circle at var(--x-px) var(--y-px), rgba(246, 199, 59, 0.2), transparent 40%);
 }
 .feature:before {
     z-index: 1;
