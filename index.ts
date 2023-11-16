@@ -1,6 +1,8 @@
 // index.ts
 import { Elysia, t } from 'elysia'
 import nuxt from './runtime/index'
+import Stream from '@elysiajs/stream';
+import { downloadTemplate } from 'giget';
 // const nuxt = await import('./runtime/index')
 const app = new Elysia().use(nuxt).ws('/ws', {
     message(ws, message) {
@@ -13,7 +15,11 @@ const app = new Elysia().use(nuxt).ws('/ws', {
     open(ws) {
         ws.subscribe('chat')
     },
-}).listen(5566, async(server) => {
+}).get('/v2', (context) => new Stream(async stream => {
+    const clone = await downloadTemplate('github:daniel-le97/astro-portfolio')
+    stream.send(clone)
+    stream.close()
+})).listen(5566, async(server) => {
     // setInterval(() => {
     //     server.publish('chat', 'data, world!')
     // }, 1000)
