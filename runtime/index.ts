@@ -47,7 +47,7 @@ export default new Elysia().all('*', async (context) => {
   
 
   const res = await fetch(req)
-  console.log({res, req});
+  // console.log({res, req});
   
 
   if (!res.headers.get('content-type')?.includes('text/html')) {

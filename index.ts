@@ -16,8 +16,15 @@ const app = new Elysia().use(nuxt).ws('/ws', {
         ws.subscribe('chat')
     },
 }).get('/v2', (context) => new Stream(async stream => {
-    const clone = await downloadTemplate('github:daniel-le97/astro-portfolio')
-    stream.send(clone)
+    const writable = new WritableStream()
+    const path = '/Users/daniel/homelab/GitHub/nuxt-elysia/nuxt-elysia/daniel-le97-astro-portfolio'
+    const clone = Bun.spawn(["nixpacks", 'build', path, '--name', 'steve-wonder'], {
+        stdio: ['ignore', 'pipe', 'pipe']
+    })
+    clone.stderr.pipeTo(writable)
+    // stream.send(clone.stderr)
+    // stream.send(clone.stdout)
+    
     stream.close()
 })).listen(5566, async(server) => {
     // setInterval(() => {
