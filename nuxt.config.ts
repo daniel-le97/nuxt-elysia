@@ -11,9 +11,16 @@ css:["~/assets/css/main.css"],
  },
 
  vite:{server:{origin:'localhost:3000' }},
- modules: ['@nuxt/ui','nuxt-icon'],
+ modules: ['@nuxt/ui','nuxt-icon','@nuxt/content'],
  ui:{
   global: true,
   // icons: ["mdi", 'simple-icons']
  }
+ , content: {
+    highlight: {
+      // Theme used in all color schemes.
+      theme: 'github-light'
+     
+    }
+  }
 })

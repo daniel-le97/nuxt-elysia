@@ -29,6 +29,7 @@
   "dependencies": {
     "@elysiajs/eden": "^0.7.4",
     "@elysiajs/stream": "^0.7.2",
+    "@nuxt/content": "^2.9.0",
     "giget": "^1.1.3"
   }
 }

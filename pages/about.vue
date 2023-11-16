@@ -1,6 +1,7 @@
 <template>
-  <main>
+  <main class="">
     About
+    <ContentDoc path="/about"/>
   </main>
 </template>
 
