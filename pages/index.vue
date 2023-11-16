@@ -3,6 +3,9 @@
 <LandingHero/>
 
 <RadialGlowCard/>
+<!-- <div>
+  <button type="button" @click="send"></button>
+</div> -->
             </main>
 
 </template>
@@ -21,9 +24,9 @@
 
 
 // function send(){
-//   console.log('sending hello');
-  
-//   $ws.send('hello')
+//   const res = await $fetch('/v2', {
+//     'method': ''
+//   })
 // }
 </script>
 
