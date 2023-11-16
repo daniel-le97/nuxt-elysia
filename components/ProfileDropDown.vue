@@ -3,7 +3,6 @@ const items = [
   [{
     label: 'ben@example.com',
     slot: 'account',
-    disabled: true
   }], [{
     label: 'Settings',
     icon: 'i-heroicons-cog-8-tooth'

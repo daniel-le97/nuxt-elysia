@@ -79,7 +79,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="nav"
-    class="  fixed top-0 w-full transition-transform duration-300 ease-in-out px-3 flex items-center  justify-around text-gray-900  dark:text-white   shadow-md dark:bg-slate-900 z-50 "
+    class="  bg-white fixed top-0 w-full transition-transform duration-300 ease-in-out px-3 flex items-center  justify-around text-gray-900  dark:text-white   shadow-md dark:bg-gray-900 z-50 "
     :style="{ transform: navTransform }">
     <div class="">
       <UIcon name="i-heroicons-banknotes-solid" />

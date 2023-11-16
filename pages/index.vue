@@ -1,6 +1,8 @@
 <template>
   <main>
 <LandingHero/>
+
+<RadialGlowCard/>
             </main>
 
 </template>
