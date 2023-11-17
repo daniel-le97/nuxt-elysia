@@ -1,7 +1,7 @@
 <template>
   <main>
 <LandingHero/>
-
+  
 <RadialGlowCard/>
 <!-- <div>
   <button type="button" @click="send"></button>

@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { getHighlighter } from 'shiki';
+
 export default defineNuxtConfig({
  devtools: { enabled: true },
 css:["~/assets/css/main.css"],
@@ -16,11 +18,22 @@ css:["~/assets/css/main.css"],
   global: true,
   // icons: ["mdi", 'simple-icons']
  }
- , content: {
-    highlight: {
-      // Theme used in all color schemes.
-      theme: 'github-light'
-     
+ , 
+ content: {
+   
+    highlight:{
+      theme:'material'
+    },
+     markdown: {
+      async highlighter () {
+        const highlighter = await getHighlighter({
+          theme: 'github-dark'
+        })
+
+        return (rawCode, lang) => {
+          return highlighter.codeToHtml(rawCode, lang)
+        }
+      }
     }
   }
 })
