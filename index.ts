@@ -3,7 +3,9 @@ import { Elysia, t } from 'elysia'
 import nuxt from './runtime/index'
 import Stream from '@elysiajs/stream';
 import { downloadTemplate } from 'giget';
+import type { Server } from 'bun';
 // const nuxt = await import('./runtime/index')
+let server :Server | null = null
 const app = new Elysia().use(nuxt).ws('/ws', {
     message(ws, message) {
         console.log(message);
@@ -13,7 +15,8 @@ const app = new Elysia().use(nuxt).ws('/ws', {
     body:t.String(),
     response: t.String(),
     open(ws) {
-        ws.subscribe('chat')
+        ws.subscribe('stream')
+        ws.publish('stream', 'joined!')
     },
 }).get('/v2', (context) => new Stream(async stream => {
     const path = '/Users/daniel/homelab/GitHub/nuxt-elysia/nuxt-elysia/daniel-le97-astro-portfolio'
@@ -34,34 +37,17 @@ const app = new Elysia().use(nuxt).ws('/ws', {
     const clone = Bun.spawn(["nixpacks", 'build', path, '--name', generateName()], {
         stdio: ['ignore', 'pipe', 'pipe']
     })
-
-    const stderrReader = await clone.stderr.getReader().read()
-    const decoderr = new TextDecoder()
-    while (!stderrReader.done){
-        console.log(decoderr.decode(stderrReader.value));
-        
-        // stream.send(stderrReader.value.toString())
-    }
-    // const stdoutReader = await clone.stdout.getReader().read()
-    // while (!stdoutReader.done){
-    //     console.log(stdoutReader.value);
-        
-    //     // stream.send(stdoutReader.value.toString())
-    // }
-
-    const chunksErr = await Bun.readableStreamToArray(clone.stderr)
-    const chunksOut = await Bun.readableStreamToArray(clone.stdout)
-    const chunks = chunksErr.concat(chunksOut)
-    
-    const decoder = new TextDecoder()
-    for await (const chunk of chunks) {
+  const decoder = new TextDecoder()
+    for await(const chunk of clone.stderr){
         stream.send(decoder.decode(chunk))
     }
-   
-    // stream.send(clone.stdout)
+    for await(const chunk of clone.stdout){
+        stream.send(decoder.decode(chunk))
+    }
     
     stream.close()
-})).listen(5566, async(server) => {
+})).listen(5566, async(_server) => {
+    server = _server
     // setInterval(() => {
     //     server.publish('chat', 'data, world!')
     // }, 1000)
