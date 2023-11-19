@@ -32,7 +32,7 @@
     <UTooltip  >
          <Icon name="uil:rocket" class="text-2xl"/>
           <template #text>
-          <span class="italic">Hello World!</span>
+          <!-- <span class="italic">{{ _data}} value</span> -->
         </template>
       </UTooltip>
   
@@ -42,6 +42,18 @@
 </template>
 
 <script lang="ts" setup>
+// const data = ref('' as unknown)
+
+// const decoder = new TextDecoder()
+
+
+// const _data = await $fetch('/api', {
+//   responseType: 'stream'
+// })
+
+
+
+
 
 </script>
 
