@@ -5,7 +5,7 @@ export default defineNuxtConfig({
  devtools: { enabled: true },
 css:["~/assets/css/main.css"],
  nitro: {
-   preset: './runtime/preset',
+   preset: './runtime/elysia',
    experimental:{
      'asyncContext': true,
      'openAPI': true
@@ -13,7 +13,7 @@ css:["~/assets/css/main.css"],
  },
 
  vite:{server:{origin:'localhost:3000' }},
- modules: ['@nuxt/ui','nuxt-icon','@nuxt/content', 'nuxt3-socket.io'],
+ modules: ['@nuxt/ui','nuxt-icon','@nuxt/content'],
  ui:{
   global: true,
   // icons: ["mdi", 'simple-icons']

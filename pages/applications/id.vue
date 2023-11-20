@@ -36,45 +36,80 @@ const tabItems = ref([
 
 const hello = ref('')
 
-async function doTheThing() {
-  // Ensure EventSource is not initialized multiple times
-  if (!doTheThing.eventSource) {
-    doTheThing.eventSource = new EventSource('http://localhost:3000/api');
+const {$eden} = useNuxtApp()
 
-    doTheThing.eventSource.addEventListener('message', (event: { data: any; }) => {
-      const data = event.data;
-      console.log(data);
+// onMounted(() => {
+//   const ws = $eden.api.ws.subscribe()
+//   ws.subscribe((message) => {
+//     console.log(message);
+    
+//   })
 
-      // Parse the data if needed
-      try {
-        const parsedData = JSON.parse(data);
-        console.log('Parsed Data:', parsedData);
-        hello.value += parsedData.data
-        // Do something with parsedData
-      } catch (error) {
-        console.error('Error parsing JSON:', error);
-      }
-    });
+//   setInterval(() => {
+//     ws.send('hello fron client')
 
-    doTheThing.eventSource.addEventListener('error', (errorEvent: any) => {
-      console.error('EventSource error:', errorEvent);
-      // Handle errors if needed
-    });
+//   }, 1000)
 
-    doTheThing.eventSource.addEventListener('close', () => {
-      console.log('EventSource connection closed');
-      // Handle the connection close if needed
-    });
-  }
+// })
+
+const getStream = async() => {
+  const ws = $eden.api.ws.subscribe()
+  ws.on('open', event => {
+    ws.send('start')
+    
+  })
+  ws.subscribe(message => {
+    const formated = message as {isTrusted:boolean, data:string}
+    
+    console.log(formated.data);
+    hello.value += formated.data
+  })
+  // const stream = await $eden.api.v3.get()
+  // console.log(stream.data);
+  // hello.value += stream.data
+  
+  
 }
 
-// Optional: Close the EventSource after 30 seconds
-setTimeout(() => {
-  if (doTheThing.eventSource) {
-    doTheThing.eventSource.close();
-    doTheThing.eventSource = null;
-  }
-}, 30000);
+// async function doTheThing() {
+//   // Ensure EventSource is not initialized multiple times
+//   if (!doTheThing.eventSource) {
+//     doTheThing.eventSource = new EventSource('http://localhost:3000/api');
+
+//     doTheThing.eventSource.addEventListener('message', (event: { data: any; }) => {
+//       const data = event.data;
+//       console.log(data);
+
+//       // Parse the data if needed
+//       try {
+//         const parsedData = JSON.parse(data);
+//         console.log('Parsed Data:', parsedData);
+//         hello.value += parsedData.data
+//         // Do something with parsedData
+//       } catch (error) {
+//         console.error('Error parsing JSON:', error);
+//       }
+//     });
+
+//     doTheThing.eventSource.addEventListener('error', (errorEvent: any) => {
+//       console.error('EventSource error:', errorEvent);
+//       // Handle errors if needed
+//     });
+
+//     doTheThing.eventSource.addEventListener('close', () => {
+//       console.log('EventSource connection closed');
+//       // Handle the connection close if needed
+//     });
+//   }
+// }
+
+// // Optional: Close the EventSource after 30 seconds
+// setTimeout(() => {
+//   if (doTheThing.eventSource) {
+//     doTheThing.eventSource.close();
+//     doTheThing.eventSource = null;
+//   }
+// }, 30000);
 </script>
 
 <template>
@@ -173,7 +208,7 @@ setTimeout(() => {
             <input class="h-12 shadow appearance-none border rounded w-full py-2 px-3 dark:text-white text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="https://github.com/daniel-le97/nuxt-elysia">
           </div>
    
-   <button class="bg-amber-400 p-2 rounded-md px-4" type="button" @click.prevent="doTheThing">
+   <button class="bg-amber-400 p-2 rounded-md px-4" type="button" @click.prevent="getStream">
     Build
    </button>
      
@@ -199,7 +234,7 @@ setTimeout(() => {
              <div class="p-2 bg-zinc-700 rounded-md" v-if="hello?.length">
               <!-- <div v-for="data in hello">
               </div> -->
-                <code > {{  hello }}</code>
+                <pre > {{  hello }}</pre>
              </div>
       </div>
             </div>

@@ -2,11 +2,13 @@ import { Elysia } from 'elysia'
 import { type NitroApp } from 'nitropack'
 import { defineNuxtConfig } from 'nuxt/config'
 import { type NuxtConfig } from 'nuxt/schema'
+import { app as appRouter} from '../index';
+import consola from 'consola'
 
 // const nitro = useNitroApp
 
 
-export default new Elysia().all('*', async (context) => {
+export const main =  new Elysia().all('*', async (context) => {
   // isProduction
   if (process.env.NODE_ENV === 'production') {
     const outputPath = `${process.cwd()}/.output/server/index.mjs`
@@ -48,6 +50,7 @@ export default new Elysia().all('*', async (context) => {
 
   const res = await fetch(req)
   // console.log({res, req});
+  // console.log(rewriter.transform(res.clone()));
   
 
   if (!res.headers.get('content-type')?.includes('text/html')) {
@@ -62,10 +65,23 @@ export default new Elysia().all('*', async (context) => {
     .replaceAll('href="/_nuxt', `href="http://${origin}/_nuxt`)
     .replaceAll('src="/__nuxt', `src="http://${origin}/__nuxt`)
     .replaceAll('href="/__nuxt', `href="http://${origin}/__nuxt`)
-// console.log(html);
+
 
   return new Response(html, res)
+}).use(appRouter).listen(5566, (server) => {
+  consola.box('http://localhost:5566')
 })
 
+export type MainApp = typeof main
+
+
+// const rewriter = new HTMLRewriter();
+
+// rewriter.on("*", {
+//   element(el) {
+
+//     console.log(el.attributes); // "body" | "div" | ...
+//   },
+// });
 
 
