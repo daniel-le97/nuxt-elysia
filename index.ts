@@ -3,10 +3,50 @@ import { Elysia, t } from 'elysia'
 // import nuxt from './runtime/index'
 import Stream from '@elysiajs/stream';
 import { downloadTemplate } from 'giget';
-import type { Server } from 'bun';
+import type { Server, Subprocess } from 'bun';
+import { ElysiaWS } from 'elysia/dist/ws/index.js';
 // const nuxt = await import('./runtime/index')
-let server :Server | null = null
-export const app = new Elysia({prefix: '/api'}).ws('/ws', {
+// let server :Server | null = null
+
+// class Terminal{
+//     static enc = new TextEncoder();
+//     static clone: Subprocess<"pipe", "pipe", "inherit">;
+//     static server: Elysia<any> | null = null
+//     // constructor(){
+
+//     // }
+//     static send(data:string){
+//         Terminal.clone.stdin.write(Terminal.enc.encode(data))
+//     }
+
+//    static async asyncSpawn(){
+//     const dec = new TextDecoder()
+//        this.clone = Bun.spawn(["bash"], {stdin: 'pipe'})
+//       for await( const chunk of this.clone.stdout){
+//         this.server?.server?.publish('terminal', dec.decode(chunk))
+//       }
+//     }
+//     static ws(){
+//         const ws = new Elysia().ws('/terminal', {
+//             message(ws, message) {
+
+
+                
+//             },
+//             open(ws) {
+//                 ws.subscribe('terminal')
+//                 Terminal.asyncSpawn()
+                
+//             },
+//         })
+//         this.server = ws
+//         return ws
+//     }
+// }
+
+export const app = new Elysia({prefix: '/api'})
+// .use(Terminal.ws())
+.ws('/ws', {
     async message(ws, message) {
         // console.log(message);
         // if (message.includes('stream')) {

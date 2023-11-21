@@ -1,12 +1,13 @@
 <template>
   <main class=" ">
     <div class="w-full ">
-    <form class="">
+    <!-- <form class=""> -->
       <div class="mb-4">
        <div class="lg:flex space-x-3">
          <label class="block dark:text-white text-gray-700 text-3xl  font-bold mb-2" for="username">
            Public Repository from Git
           </label>
+          <!-- <input @keyup.enter="send" v-model="input"/> -->
   <UTooltip  >
        <Icon name="uil:question-circle" class="text-2xl"/>
         <template #text>
@@ -19,7 +20,7 @@
       </div>
    
      
-    </form>
+    <!-- </form> -->
  
   </div>
 
@@ -42,14 +43,31 @@
 </template>
 
 <script lang="ts" setup>
-// const data = ref('' as unknown)
+// const data = ref('' as any)
+// const input = ref('')
 
-// const decoder = new TextDecoder()
+// // const decoder = new TextDecoder()
 
 
-// const _data = await $fetch('/api', {
-//   responseType: 'stream'
+// // const _data = await $fetch('/api', {
+// //   responseType: 'stream'
+// // })
+// const {$eden} = useNuxtApp()
+// const ws = $eden.api.terminal.subscribe()
+
+// ws.on('open', (event) =>{
+//   ws.subscribe(message =>{
+//     console.log(message.data);
+    
+//     data.value += message.data
+//   })
 // })
+
+// async function send(){
+//   console.log('sending');
+  
+//  ws.send(input.value)
+// }
 
 
 

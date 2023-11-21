@@ -1,4 +1,4 @@
-# Nuxt 3 Minimal Starter
+this is not a boilerplate, you can use it if you want but its mainly a testing ground for integrating nuxt with Elysia (a bun web framework)
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
